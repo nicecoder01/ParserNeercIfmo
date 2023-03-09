@@ -38,7 +38,5 @@ def get_dict_with_links():
 
 
 if __name__ == '__main__':
-    data = get_dict_with_links()
-    write_to_json('result_data.json', data)
-    data_from_file = get_from_json('result_data.json')
+    pass
 
