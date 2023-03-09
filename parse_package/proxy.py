@@ -1,0 +1,5 @@
+protocol = 'https'
+login = 'A8qRAN'
+password = 'qx6CEk'
+ip = '104.227.102.174'
+port = '9400'
