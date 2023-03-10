@@ -1,4 +1,4 @@
-from parse_package.multypurpose_parser import ScrapSession
+from parse_package.simple_parser_tool import ScrapSession
 from parse_package.config import link, params, cookies, headers
 import json
 
@@ -17,23 +17,26 @@ def get_from_json(name_of_file):
 
 def get_link_and_name(list_summary):
     data = []
-    root = 'http://neerc.ifmo.ru/wiki/index.php?title=Заглавная_страница'
+    root = 'http://neerc.ifmo.ru'
     for summary in list_summary:
-        name = summary.find('span', class_='toctext').text.strip()
-        link = f"{root}{summary.find('a').get('href')}"
-        data.append({
-            'nameOfSummary': name,
-            'linkOfSummary': link,
-        })
+        try:
+            name = summary.find('a').text.strip()
+            link = f"{root}{summary.find('a').get('href')}"
+            data.append({
+                'nameOfSummary': name,
+                'linkOfSummary': link,
+            })
+        except AttributeError:
+            continue
     return data
 
 
 def get_dict_with_links():
     session = ScrapSession()
     response_soup = session.get(link).soup
-    response_soup = response_soup.find('li', class_='toclevel-1 tocsection-1')
-    list_with_summary = response_soup.find_all('li')
-    data = get_link_and_name(list_with_summary)
+    # response_soup = response_soup.find('li', class_='toclevel-1 tocsection-1')
+    list_with_summary = response_soup.find_all('span', class_='mw-headline')
+    data = get_link_and_name(list_with_summary[1:])
     return data
 
 
