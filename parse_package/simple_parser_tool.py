@@ -11,7 +11,6 @@ class ScrapResponse:
     def html(self) -> str:
         return self.__page_source
 
-
     @property
     def soup(self) -> BeautifulSoup:
         return BeautifulSoup(self.__page_source, 'lxml')
