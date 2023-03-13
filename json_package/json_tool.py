@@ -56,7 +56,7 @@ def get_link_from_topic_list(name_of_summary: str, name_of_topic: str):
 
 
 if __name__ == '__main__':
-    probable_summary = get_topics_from_json('дискра', 'result_data.json')
+    probable_summary = get_topics_from_json('дискретка', 'result_data.json')
     if len(probable_summary) == 1:
         probable_topic = get_link_from_topic_list(name_of_summary=probable_summary[0][1],
                                                   name_of_topic='отношение порядка')
