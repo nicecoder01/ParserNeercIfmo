@@ -1,4 +1,4 @@
-from parse_materials import write_to_json, get_from_json
+from json_package.json_tool import write_to_json, load_from_json
 name_of_file = 'quiz.json'
 
 
@@ -7,7 +7,7 @@ def init_file():
 
 
 def add_summary(name_of_summary):
-    data = get_from_json(name_of_file)
+    data = load_from_json(name_of_file)
     data.append({
         'nameOfSummary': name_of_summary,
         'questions': [],
@@ -16,7 +16,7 @@ def add_summary(name_of_summary):
 
 
 def add_question(summary, question, answer):
-    data = get_from_json(name_of_file)
+    data = load_from_json(name_of_file)
     for topic in data:
         if summary == topic['nameOfSummary']:
             topic['questions'].append({

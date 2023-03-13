@@ -1,20 +1,17 @@
 from parse_package.simple_parser_tool import ScrapSession
 from parse_package.config import link, params, cookies, headers
-import json
+from json_package.json_tool import load_from_json, write_to_json
 
 session = ScrapSession()
 
 
-def write_to_json(name_of_file, data):
-    json_data = json.dumps(data, indent=4, ensure_ascii=False)
-    with open(name_of_file, 'w', encoding='UTF-8') as file:
-        file.write(json_data)
-
-
-def get_from_json(name_of_file):
-    with open(name_of_file, 'r', encoding='UTF-8') as file:
-        dict = json.load(file)
-    return dict
+def get_link_topic(name_of_summary, name_of_topic):
+    data = load_from_json('json_package/result_data.json')
+    for summary in data:
+        if summary['nameOfSummary'] == name_of_summary:
+            for topic in summary['topicsOfSummary']:
+                if topic['nameOfTopic'] == name_of_topic:
+                    return topic['linkOfTopic']
 
 
 def get_topics(summary_link):
