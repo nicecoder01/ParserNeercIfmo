@@ -46,7 +46,7 @@ def get_link_from_topic_list(name_of_summary: str, name_of_topic: str):
         if summary['nameOfSummary'] == name_of_summary:
             for topic in summary['topicsOfSummary']:
                 answer.append([similarity(topic['nameOfTopic'], name_of_topic), topic['linkOfTopic']])
-                if len(answer) == 4:
+                if len(answer) == count_of_elements + 1:
                     answer.sort(reverse=True)
                     answer.pop()
     for index in range(len(answer) - 1, 0, -1):
