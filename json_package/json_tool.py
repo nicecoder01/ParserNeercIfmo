@@ -13,7 +13,7 @@ def similarity(s1: str, s2: str):
   return matcher.ratio()
 
 
-def write_to_json(name_of_file: str, data: dict):
+def write_to_json(name_of_file: str, data: list):
     json_data = json.dumps(data, indent=4, ensure_ascii=False)
     with open(name_of_file, 'w', encoding='UTF-8') as file:
         file.write(json_data)
